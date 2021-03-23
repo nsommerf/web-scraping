@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mars Data</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Refresh</a></p>
+    </div>
+
+    <!--Mars Headings  -->
+    <div class="row" id="craiglist-listings">
+      <div class="col-md-12">
+        <h2>Latest Mars News</h2>
+        <h4 class="heading">{{marslist.news_title}} </h4>
+        <small>{{marslist.news_p}}</small>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <div class="row">
+        <div class="col-md-9">
+          <p>Featured Mars Image</p>
+          <img src="{{ marslist.featured_image_url }}">
+        </div>
+        <div class="col">
+          <p>Mars Data table</p>
+            {{ marslist.table_html|safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <p>Mars Hemispheres</p>
+      <div class="row">
+        {% for url in marslist.hemisphere_img_urls %}
+          <div class="col-md-6">
+          <img src={{ url.img_url }}, width=300px height=300px>
+          <h4> {{url.title}}</h4>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
