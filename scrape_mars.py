@@ -27,7 +27,7 @@ def scrape_info():
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
 
-    time.sleep(1)
+    #time.sleep(1)
 
     # Scrape page into Soup
     html = browser.html
@@ -52,18 +52,18 @@ def scrape_info():
     baseurl = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/'
     browser.visit(url)
 
-    time.sleep(10)
+    #time.sleep(10)
 
     # Scrape page into Soup
     html = browser.html
     soup = bs(html, "html.parser")
 
     #get the image
-    #header = soup.find('div', class_='header')
-    image =soup.find('img', class_='fancybox-image').get('src')
+    header = soup.find('div', class_='header')
+    image = header.find('a', class_='showimg fancybox-thumbs')['href']
 
     featured_image_url = baseurl + image
-    print(featured_img_url)
+    #print(featured_img_url)
     #get the table from this site
     url = 'https://space-facts.com/mars/'
     tables = pd.read_html(url)
@@ -75,7 +75,7 @@ def scrape_info():
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
 
-    time.sleep(1)
+    #time.sleep(1)
 
     # Scrape page into Soup
     html = browser.html
